@@ -1,4 +1,4 @@
-# lunchy-ui: The web UI for Lunchy
+# lunchy-ui: The web UI for [Lunchy](https://github.com/rebasar/lunchy)
 
 See it live at: https://lunchy.nu
 
