@@ -1,0 +1,25 @@
+<h1>Lunchy McLunchface</h1>
+
+<material-expansionpanel-set *ngIf="lunchPlaces != null">
+    <material-expansionpanel *ngFor="let place of lunchPlaces" name="{{place.name}}" showSaveCancel="false"
+                             (open)="open($event, place)">
+        <div *ngIf="isLoaded(place)">
+            <dl>
+                <div *ngFor="let item of getLunch(place.name).items">
+                    <dt><b>{{item.title}}</b></dt>
+                    <dd>{{item.description}} <span *ngIf="item.price != null">({{item.price}} SEK)</span></dd>
+                </div>
+            </dl>
+            <div style="display: flex; justify-content: space-between">
+                <div>From: <b>{{getLunch(place.name).validFrom}}</b></div>
+                <material-button raised class="blue" (trigger)="copy($event, place.name)"><glyph icon="content_copy"></glyph></material-button>
+                <div>Until: <b>{{getLunch(place.name).validUntil}}</b></div>
+            </div>
+        </div>
+        <div *ngIf="isError(place)">No lunch for you!</div>
+        <div *ngIf="isPending(place)">
+            <material-progress [indeterminate]="true"></material-progress>
+        </div>
+        <a href="{{place.website}}" target="_blank" rel="nofollow">Website</a>
+    </material-expansionpanel>
+</material-expansionpanel-set>
